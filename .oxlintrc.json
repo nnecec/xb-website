@@ -1,0 +1,22 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["eslint", "nextjs", "react-perf", "typescript", "unicorn", "import"],
+  "categories": {
+    "correctness": "error"
+  },
+  "rules": {
+    "no-unused-vars": [
+      "error",
+      {
+        "fix": {
+          "imports": "safe-fix",
+          "variables": "safe-fix"
+        }
+      }
+    ],
+    "react/self-closing-comp": "error"
+  },
+  "env": {
+    "builtin": true
+  }
+}
