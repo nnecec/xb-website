@@ -1,34 +1,44 @@
-import React from 'react'
+"use client"
+import { useEffect, useState } from 'react'
 
-// Lightweight top stats bar inspired by the original design
+interface GitHubStats {
+  stars: number
+  version: string
+  commits: number
+}
+
 export const StatsBar: React.FC = () => {
+  const [stats, setStats] = useState<GitHubStats | null>(null)
+
+  useEffect(() => {
+    fetch('/api/github')
+      .then(res => res.json())
+      .then(data => setStats(data))
+      .catch(() => {})
+  }, [])
+
   return (
-    <div className="w-full bg-[#0a0a0f] text-[#6b7280] border-b border-[#2a2a3a]">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-wrap items-center gap-4 py-2">
-        <span className="flex items-center gap-2 text-xs uppercase tracking-wide text-[#00ff88]">
-          <span className="w-2 h-2 rounded-full bg-[#00ff88] inline-block" /> Live
+    <div className="w-full bg-[#0a0a0f] text-[#5a5a68] border-b border-[#2a2a38]">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-wrap items-center gap-x-6 gap-y-2 py-2.5">
+        <span className="flex items-center gap-2 text-xs uppercase tracking-wide">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#00ff88] animate-pulse" />
+          <span className="text-[#00ff88]">Live</span>
         </span>
         <span className="flex items-center gap-2 text-xs uppercase tracking-wide">
-          Chrome 用户
-          <span className="font-semibold text-[#00ff88]">2,847</span>
+          Chrome
+          <span className="font-semibold text-[#e8e8ec]">2,847</span>
         </span>
         <span className="flex items-center gap-2 text-xs uppercase tracking-wide">
-          <svg
-            className="w-3 h-3 text-[#ff00ff]"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={2}
-            viewBox="0 0 24 24"
-          >
-            <path d="M12 3l9 4-9 4-9-4 9-4z" />
-            <path d="M3 11l9 4 9-4" />
+          <svg className="w-3.5 h-3.5 text-[#ff00ff]" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0l3.09 6.26L22 7.27l-5 4.87 1.18 6.88L12 15.77l-6.18 3.25L7 12.14 2 7.27l6.91-1.01L12 0z" />
           </svg>
-          GitHub Stars
-          <span className="font-semibold text-[#ff00ff]">156</span>
+          <span className="font-semibold text-[#ff00ff]">
+            {stats?.stars != null ? stats.stars.toLocaleString() : '...'}
+          </span>
         </span>
-        <span className="text-xs uppercase tracking-wide ml-auto">v3.2.1</span>
-        <span className="text-xs uppercase tracking-wide ml-2">Commits 342</span>
-        <span className="hidden sm:inline whitespace-nowrap ml-4 text-xs">via GitHub API + Chrome Web Store</span>
+        <span className="ml-auto text-xs font-mono text-[#5a5a68]">
+          {stats?.version || 'v1.0.0'}
+        </span>
       </div>
     </div>
   )

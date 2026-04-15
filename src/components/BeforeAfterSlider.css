@@ -1,0 +1,9 @@
+.before-after-slider img {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.before-after-slider img {
+  max-width: none;
+}

@@ -1,35 +1,48 @@
 import React from 'react'
+
 import { TestimonialCard } from './TestimonialCard'
 
-export const TestimonialsSection: React.FC = () => {
-  const testimonials = [
-    {
-      name: 'Alex_Dev',
-      role: '前端开发者',
-      text: '终于可以安静地刷微博了，广告全没了，界面清爽得像另一个产品。'
-    },
-    {
-      name: 'DesignMiko',
-      role: 'UI 设计师',
-      text: 'X 风格的布局太赞，信息密度刚好，视觉噪音下降。'
-    },
-    {
-      name: 'Mia',
-      role: '产品经理',
-      text: '关键指标更易关注，用户留存显著提升。'
-    }
-  ]
+const testimonials = [
+  {
+    name: '魔术师',
+    role: '国企员工',
+    text: '终于可以安静地刷微博了，广告全没了，界面清爽得像另一个产品。',
+  },
+  {
+    name: 'Molly',
+    role: '私企人事',
+    text: '界面清爽，深色模式也很棒，用起来眼睛不累。',
+  },
+  {
+    name: '一枪玫瑰',
+    role: '私企程序员',
+    text: '虽然高仿X风格，但刷起来更舒服啊。',
+  },
+]
 
+export const TestimonialsSection: React.FC = () => {
   return (
-    <section className="w-full bg-[#0a0a0f] py-16 text-[#e0e0e0]">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center mb-6">
-        <span className="font-mono text-xs uppercase tracking-[3px] text-[#00ff88]">USER FEEDBACK</span>
-        <h3 className="mt-2 text-3xl font-extrabold uppercase">用户评价</h3>
-      </div>
-      <div className="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
-        {testimonials.map((t, idx) => (
-          <TestimonialCard key={idx} name={t.name} role={t.role} text={t.text} />
-        ))}
+    <section id="reviews" className="w-full bg-[#0a0a0f] py-24 text-[#e8e8ec]">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-16 text-center">
+          <span className="animate-fade-in-up font-mono text-xs tracking-[0.2em] text-[#00ff88] uppercase">
+            User Feedback
+          </span>
+          <h2 className="animate-fade-in-up mt-4 text-4xl font-black tracking-tight uppercase delay-100 md:text-5xl">
+            用户评价
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+          {testimonials.map((t, idx) => (
+            <TestimonialCard
+              key={idx}
+              name={t.name}
+              role={t.role}
+              text={t.text}
+              delay={idx * 100}
+            />
+          ))}
+        </div>
       </div>
     </section>
   )

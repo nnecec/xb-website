@@ -3,14 +3,29 @@ import React from 'react'
 export interface FeatureCardProps {
   title: string
   description: string
+  delay?: number
 }
 
-export const FeatureCard: React.FC<FeatureCardProps> = ({ title, description }) => {
+export const FeatureCard: React.FC<FeatureCardProps> = ({ title, description, delay = 0 }) => {
   return (
-    <div className="rounded-xl border border-[#2a2a3a] bg-[#12121a99] p-6 flex-1 flex flex-col">
-      <div className="mb-2 flex h-9 w-9 items-center justify-center rounded-full bg-[#00ff88] bg-opacity-20 border border-[#00ff88] text-center mx-auto" />
-      <h4 className="text-lg font-semibold mb-1 text-[#e0e0e0]">{title}</h4>
-      <p className="text-sm text-[#6b7280] flex-1">{description}</p>
+    <div 
+      className="animate-fade-in-up group relative rounded-xl border border-[#2a2a38] bg-[#12121a] p-6 flex flex-col overflow-hidden transition-all duration-300 hover:border-[#3a3a4a] hover:bg-[#1a1a24]"
+      style={{ animationDelay: `${delay}ms` }}
+    >
+      <div className="absolute inset-0 bg-gradient-to-br from-[#00ff8808] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <div className="relative z-10">
+        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[#00ff8815] border border-[#00ff8830]">
+          <svg className="w-6 h-6 text-[#00ff88]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h4 className="text-lg font-semibold text-[#e8e8ec] group-hover:text-white transition-colors">
+          {title}
+        </h4>
+        <p className="mt-2 text-sm text-[#9898a4] leading-relaxed">
+          {description}
+        </p>
+      </div>
     </div>
   )
 }

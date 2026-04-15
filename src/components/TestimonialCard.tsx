@@ -4,17 +4,29 @@ export interface TestimonialCardProps {
   name: string
   role: string
   text: string
+  delay?: number
 }
 
-export const TestimonialCard: React.FC<TestimonialCardProps> = ({ name, role, text }) => {
+export const TestimonialCard: React.FC<TestimonialCardProps> = ({ name, role, text, delay = 0 }) => {
   return (
-    <div className="rounded-xl border border-[#2a2a3a] bg-[#12121a99] p-6 flex flex-col justify-between">
-      <p className="text-sm text-[#e0e0e0]">{text}</p>
-      <div className="mt-4 flex items-center gap-3">
-        <div className="h-9 w-9 rounded-full bg-[#2a2a3a]" />
+    <div 
+      className="animate-fade-in-up group relative rounded-xl border border-[#2a2a38] bg-[#12121a] p-6 flex flex-col justify-between overflow-hidden transition-all duration-300 hover:border-[#3a3a4a] hover:bg-[#1a1a24]"
+      style={{ animationDelay: `${delay}ms` }}
+    >
+      <div className="absolute inset-0 bg-gradient-to-br from-[#00ff8805] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <div className="relative z-10">
+        <svg className="w-6 h-6 text-[#00ff8840] mb-4" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+        </svg>
+        <p className="text-sm text-[#e8e8ec] leading-relaxed">{text}</p>
+      </div>
+      <div className="mt-6 flex items-center gap-3 relative z-10">
+        <div className="h-10 w-10 rounded-full bg-gradient-to-br from-[#00ff88] to-[#00d4ff] flex items-center justify-center text-[#09090c] font-semibold text-sm">
+          {name.charAt(0)}
+        </div>
         <div className="flex flex-col">
-          <span className="text-sm font-semibold text-[#e0e0e0]">{name}</span>
-          <span className="text-xs text-[#6b7280]">{role}</span>
+          <span className="text-sm font-semibold text-[#e8e8ec]">{name}</span>
+          <span className="text-xs text-[#5a5a68]">{role}</span>
         </div>
       </div>
     </div>
