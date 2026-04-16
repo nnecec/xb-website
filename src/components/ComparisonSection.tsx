@@ -33,12 +33,12 @@ export const ComparisonSection: React.FC = () => {
             />
             <div className="mt-4 flex items-center justify-between px-2">
               <div className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-[#ff00ff]" />
-                <span className="text-sm text-[#9898a4]">安装前：原始微博界面</span>
+                <span className="h-2 w-2 rounded-full bg-[#00ff88]" />
+                <span className="text-sm text-[#9898a4]">安装后：更清爽的微博界面</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-sm text-[#9898a4]">安装后：更清爽的微博界面</span>
-                <span className="h-2 w-2 rounded-full bg-[#00ff88]" />
+                <span className="h-2 w-2 rounded-full bg-[#ff00ff]" />
+                <span className="text-sm text-[#9898a4]">安装前：原始微博界面</span>
               </div>
             </div>
           </div>
