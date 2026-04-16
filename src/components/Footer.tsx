@@ -1,16 +1,18 @@
 import React from 'react'
 
+import { siteConfig } from '@/app/site'
+
 export const Footer: React.FC = () => {
   return (
     <footer className="w-full bg-[#0a0a0f] text-[#5a5a68] border-t border-[#2a2a38]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-6">
-          <span className="text-sm">Made with Next.js</span>
+          <span className="text-sm">微博 Chrome 插件</span>
           <span className="text-[#2a2a38]">•</span>
           <span className="text-sm">MIT License</span>
         </div>
         <a 
-          href="https://github.com/nnecec/xb" 
+          href={siteConfig.repoUrl} 
           target="_blank" 
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 text-sm hover:text-[#00ff88] transition-colors duration-200"

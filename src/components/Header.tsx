@@ -1,10 +1,13 @@
 "use client";
 import React, { useState } from 'react'
 
+import { siteConfig } from '@/app/site'
+
 const navItems = [
-  { label: 'Features', href: '#features' },
-  { label: 'Compare', href: '#compare' },
-  { label: 'Reviews', href: '#reviews' },
+  { label: '功能特点', href: '#features' },
+  { label: '安装前后', href: '#comparison' },
+  { label: '用户评价', href: '#reviews' },
+  { label: '常见问题', href: '#faq' },
 ]
 
 export const Header: React.FC = () => {
@@ -17,7 +20,7 @@ export const Header: React.FC = () => {
             xb
           </span>
           <span className="hidden sm:block text-xs font-mono text-[#5a5a68] uppercase tracking-widest">
-            Make Weibo
+            微博 Chrome 插件
           </span>
         </a>
         <div className="hidden md:flex items-center gap-1">
@@ -34,20 +37,20 @@ export const Header: React.FC = () => {
         </div>
         <div className="flex items-center gap-2">
           <a 
-            href="https://chromewebstore.google.com/detail/xb/ffhppkcianllofhhjohbfbobjfppbeao"
+            href={siteConfig.installUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:inline-flex items-center gap-2 rounded-lg bg-[#2a2a38] px-4 py-2 text-sm text-[#e8e8ec] hover:bg-[#3a3a4a] hover:text-[#00ff88] transition-all duration-200"
           >
-            Install
+            安装插件
           </a>
           <a 
-            href="https://github.com/nnecec/xb"
+            href={siteConfig.repoUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:inline-flex items-center gap-2 rounded-lg border border-[#2a2a38] px-4 py-2 text-sm text-[#9898a4] hover:text-[#e8e8ec] hover:border-[#3a3a4a] transition-all duration-200"
           >
-            Source
+            GitHub
           </a>
           <button
             aria-label="Menu"

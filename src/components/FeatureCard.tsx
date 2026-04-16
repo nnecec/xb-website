@@ -19,9 +19,9 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({ title, description, de
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h4 className="text-lg font-semibold text-[#e8e8ec] group-hover:text-white transition-colors">
+        <h3 className="text-lg font-semibold text-[#e8e8ec] group-hover:text-white transition-colors">
           {title}
-        </h4>
+        </h3>
         <p className="mt-2 text-sm text-[#9898a4] leading-relaxed">
           {description}
         </p>

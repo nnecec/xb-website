@@ -22,11 +22,15 @@ export const StatsBar: React.FC = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-wrap items-center gap-x-6 gap-y-2 py-2.5">
         <span className="flex items-center gap-2 text-xs uppercase tracking-wide">
           <span className="w-1.5 h-1.5 rounded-full bg-[#00ff88] animate-pulse" />
-          <span className="text-[#00ff88]">Live</span>
+          <span className="text-[#00ff88]">Open Source</span>
         </span>
         <span className="flex items-center gap-2 text-xs uppercase tracking-wide">
-          Chrome
+          Chrome 插件
           <span className="font-semibold text-[#e8e8ec]">2,847</span>
+        </span>
+        <span className="flex items-center gap-2 text-xs uppercase tracking-wide">
+          微博净化
+          <span className="font-semibold text-[#e8e8ec]">去广告</span>
         </span>
         <span className="flex items-center gap-2 text-xs uppercase tracking-wide">
           <svg className="w-3.5 h-3.5 text-[#ff00ff]" fill="currentColor" viewBox="0 0 24 24">
