@@ -28,10 +28,10 @@ export const Header: React.FC = () => {
             <a
               key={item.label}
               href={item.href}
-              className="relative px-4 py-2 text-sm text-[#9898a4] hover:text-[#e8e8ec] transition-colors duration-200 group"
+              className="relative px-4 py-3 text-sm text-[#9898a4] hover:text-[#e8e8ec] transition-colors duration-200 group"
             >
               {item.label}
-              <span className="absolute bottom-1 left-4 right-4 h-px bg-[#00ff88] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+              <span className="absolute bottom-2 left-4 right-4 h-px bg-[#00ff88] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             </a>
           ))}
         </div>

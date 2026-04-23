@@ -10,10 +10,10 @@ export const FAQSection: React.FC = () => {
           <span className="animate-fade-in-up font-mono text-xs tracking-[0.2em] text-[#00d4ff] uppercase">
             FAQ
           </span>
-          <h2 className="animate-fade-in-up mt-4 text-4xl font-black tracking-tight uppercase delay-100 md:text-5xl">
+          <h2 className="animate-fade-in-up text-balance mt-4 text-4xl font-black tracking-tight uppercase delay-100 md:text-5xl">
             常见问题
           </h2>
-          <p className="animate-fade-in-up mx-auto mt-4 max-w-2xl text-base text-[#9898a4] delay-200">
+          <p className="animate-fade-in-up text-pretty mx-auto mt-4 max-w-2xl text-base text-[#9898a4] delay-200">
             这里集中回答中文用户在寻找微博 Chrome 插件、微博去广告工具时最常问的几个问题。
           </p>
         </div>

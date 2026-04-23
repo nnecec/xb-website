@@ -25,10 +25,10 @@ export const FeaturesSection: React.FC = () => {
           <span className="animate-fade-in-up font-mono text-xs tracking-[0.2em] text-[#00d4ff] uppercase">
             Feature Highlights
           </span>
-          <h2 className="animate-fade-in-up mt-4 text-4xl font-black tracking-tight uppercase delay-100 md:text-5xl">
+          <h2 className="animate-fade-in-up text-balance mt-4 text-4xl font-black tracking-tight uppercase delay-100 md:text-5xl">
             为什么这款微博插件更值得装
           </h2>
-          <p className="animate-fade-in-up mx-auto mt-4 max-w-lg text-base text-[#9898a4] delay-200">
+          <p className="animate-fade-in-up text-pretty mx-auto mt-4 max-w-lg text-base text-[#9898a4] delay-200">
             围绕微博去广告、精简微博和更顺手的阅读体验设计，不靠噱头，直接解决刷微博时最常见的问题。
           </p>
         </div>

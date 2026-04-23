@@ -28,10 +28,10 @@ export const TestimonialsSection: React.FC = () => {
           <span className="animate-fade-in-up font-mono text-xs tracking-[0.2em] text-[#00ff88] uppercase">
             User Feedback
           </span>
-          <h2 className="animate-fade-in-up mt-4 text-4xl font-black tracking-tight uppercase delay-100 md:text-5xl">
+          <h2 className="animate-fade-in-up text-balance mt-4 text-4xl font-black tracking-tight uppercase delay-100 md:text-5xl">
             用户为什么会留下来
           </h2>
-          <p className="animate-fade-in-up mx-auto mt-4 max-w-2xl text-base text-[#9898a4] delay-200">
+          <p className="animate-fade-in-up text-pretty mx-auto mt-4 max-w-2xl text-base text-[#9898a4] delay-200">
             对希望找到微博插件、微博去广告工具或更清爽微博体验的用户来说，稳定和可信同样重要。
           </p>
         </div>

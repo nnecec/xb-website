@@ -10,10 +10,10 @@ export const Hero: React.FC = () => {
         <p className="animate-fade-in-up inline-block text-xs font-mono uppercase tracking-[0.2em] text-[#00ff88] mb-6">
           Weibo Chrome Extension
         </p>
-        <h1 className="animate-fade-in-up delay-100 text-4xl md:text-6xl font-black tracking-tight text-[#e8e8ec] leading-tight">
+        <h1 className="animate-fade-in-up text-balance delay-100 text-4xl md:text-6xl font-black tracking-tight text-[#e8e8ec] leading-tight">
           XB：更清爽的微博 Chrome 插件
         </h1>
-        <p className="animate-fade-in-up delay-300 mt-6 text-base md:text-lg text-[#9898a4] max-w-xl mx-auto leading-relaxed">
+        <p className="animate-fade-in-up text-pretty delay-300 mt-6 text-base md:text-lg text-[#9898a4] max-w-xl mx-auto leading-relaxed">
           一键实现微博去广告、精简侧栏与推荐内容，减少噪音干扰，让你更专注地浏览真正想看的微博内容。
         </p>
         <p className="animate-fade-in-up delay-400 mt-4 text-sm md:text-base text-[#b2b2bc] max-w-3xl mx-auto leading-relaxed">
@@ -29,7 +29,7 @@ export const Hero: React.FC = () => {
             href={siteConfig.installUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative px-8 py-3.5 rounded-full bg-[#00ff88] text-[#09090c] font-semibold overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,255,136,0.3)]"
+            className="group relative px-8 py-3.5 rounded-full bg-[#00ff88] text-[#09090c] font-semibold overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,255,136,0.3)] active:scale-[0.96] transition-transform duration-150 ease-out"
           >
             <span className="relative z-10">安装微博 Chrome 插件</span>
             <div className="absolute inset-0 bg-[#00ddaa] translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
