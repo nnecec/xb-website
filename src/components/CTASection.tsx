@@ -11,7 +11,7 @@ export const CTASection: React.FC = () => {
           现在就把微博变清爽
         </h2>
         <p className="animate-fade-in-up text-pretty delay-100 text-base text-[#9898a4] mt-4 max-w-lg mx-auto">
-          如果你正在找一款好用的微博插件，想要微博去广告、精简微博界面，XB 可以直接开始解决这些问题。
+          如果你正在找一款好用的微博插件，想要极简界面、深度定制或一键导图，XB 可以直接开始解决这些问题。
         </p>
         <div className="animate-fade-in-up delay-200 mt-10 flex flex-wrap justify-center gap-4">
           <a 

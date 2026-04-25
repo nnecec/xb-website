@@ -2,7 +2,7 @@ export const siteConfig = {
   name: 'XB',
   title: 'XB - 更清爽的微博 Chrome 插件',
   description:
-    'XB 是一款面向中文用户的微博 Chrome 插件，支持微博去广告、精简侧栏与推荐内容，帮助你获得更清爽、更专注的微博浏览体验。',
+    'XB 是一款面向中文用户的微博 Chrome 插件，支持微博去广告、精简侧栏与推荐内容，帮助你获得更清爽、更专注的微博浏览体验，并可一键将微博导出为图片。每一项功能都为简洁与效率而生。',
   url: 'https://xb-extension.vercel.app',
   locale: 'zh_CN',
   installUrl:
@@ -27,7 +27,7 @@ export const faqItems = [
   {
     question: 'XB 是什么？',
     answer:
-      'XB 是一款微博 Chrome 插件，用来去除广告、精简页面布局，并让微博界面更清爽、更接近高效的信息流阅读体验。',
+      'XB 是一款微博 Chrome 插件，用来去除广告、精简页面布局，并让微博界面更清爽、更接近高效的信息流阅读体验，并可一键将微博导出为图片。',
   },
   {
     question: 'XB 能解决哪些微博界面问题？',
@@ -46,7 +46,6 @@ export const faqItems = [
   },
   {
     question: 'XB 会收集用户数据吗？',
-    answer:
-      'XB 以本地体验优化为主，强调隐私优先，不以收集用户数据为产品价值。',
+    answer: 'XB 以本地体验优化为主，强调隐私优先，不以收集用户数据为产品价值。',
   },
 ] as const

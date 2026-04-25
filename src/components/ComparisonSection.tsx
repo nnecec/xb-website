@@ -8,12 +8,12 @@ export const ComparisonSection: React.FC = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
           <span className="animate-fade-in-up font-mono text-xs tracking-[0.2em] text-[#ff00ff] uppercase">
-            Before And After
+            // BEFORE AND AFTER
           </span>
-          <h2 className="animate-fade-in-up text-balance mt-4 text-4xl font-black tracking-tight uppercase delay-100 md:text-5xl">
+          <h2 className="animate-fade-in-up mt-4 text-4xl font-black tracking-tight text-balance uppercase delay-100 md:text-5xl">
             安装前后对比
           </h2>
-          <p className="animate-fade-in-up text-pretty mt-4 text-base text-[#9898a4] delay-200">
+          <p className="animate-fade-in-up mt-4 text-base text-pretty text-[#9898a4] delay-200">
             同一个微博页面，安装 XB 之后可以更直观地看到去广告与精简布局的效果。
           </p>
         </div>

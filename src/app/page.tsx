@@ -1,3 +1,4 @@
+import { faqItems, siteConfig } from '@/app/site'
 import ComparisonSection from '@/components/ComparisonSection'
 import CTASection from '@/components/CTASection'
 import FAQSection from '@/components/FAQSection'
@@ -7,7 +8,6 @@ import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import StatsBar from '@/components/StatsBar'
 import TestimonialsSection from '@/components/TestimonialsSection'
-import { faqItems, siteConfig } from '@/app/site'
 
 export default function Home() {
   const softwareJsonLd = {
@@ -38,9 +38,11 @@ export default function Home() {
     featureList: [
       '微博去广告',
       '精简微博侧栏与推荐内容',
-      '更清爽的微博阅读体验',
-      '开源免费',
-      '隐私优先',
+      '极致清爽的微博阅读体验',
+      '开源免费，隐私优先',
+      '深度定制微博页面',
+      '个性化设置',
+      '一键导出高清长图',
     ],
   }
 
