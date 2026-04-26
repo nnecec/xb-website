@@ -15,7 +15,7 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({
 }) => {
   return (
     <div
-      className="animate-fade-in-up group relative flex flex-col justify-between overflow-hidden rounded-xl border border-[#2a2a38] bg-[#12121a] p-6 transition-all duration-300 hover:border-[#3a3a4a] hover:bg-[#1a1a24]"
+      className="animate-fade-in-up group relative flex flex-col justify-between overflow-hidden rounded-xl border border-[#2a2a38] bg-[#12121a] p-6 transition-all duration-300 hover:border-[#3a3a4a] hover:bg-[#1a1a24] hover:shadow-lg hover:shadow-[#00ff8805] hover:-translate-y-1"
       style={{ animationDelay: `${delay}ms` }}
     >
       <div className="absolute inset-0 bg-linear-to-br from-[#00ff8805] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -26,7 +26,7 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({
         <p className="text-sm leading-relaxed text-[#e8e8ec]">{text}</p>
       </div>
       <div className="relative z-10 mt-6 flex items-center gap-3">
-        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-linear-to-br from-[#00ff88] to-[#00d4ff] text-sm font-semibold text-[#09090c]">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-[#00ff88] to-[#00d4ff] text-sm font-semibold text-[#09090c] transition-transform duration-300 group-hover:scale-110">
           {name.charAt(0)}
         </div>
         <div className="flex flex-col">

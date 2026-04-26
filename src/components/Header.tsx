@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { siteConfig } from '@/app/site'
 
@@ -12,8 +12,26 @@ const navItems = [
 
 export const Header: React.FC = () => {
   const [open, setOpen] = useState(false)
+  const [hidden, setHidden] = useState(false)
+  const [lastScrollY, setLastScrollY] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setHidden(true)
+      } else {
+        setHidden(false)
+      }
+      setLastScrollY(currentScrollY)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [lastScrollY])
+
   return (
-    <header className="sticky top-0 z-50 w-full glass border-b border-[#2a2a38]">
+    <header className={`sticky top-0 z-50 w-full glass border-b border-[#2a2a38] transition-transform duration-300 ${hidden ? '-translate-y-full' : 'translate-y-0'}`}>
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <a href="/" className="flex items-center gap-3 group">
           <span className="text-2xl font-black text-[#00ff88] select-none transition-all duration-300 group-hover:scale-110">
@@ -71,8 +89,8 @@ export const Header: React.FC = () => {
           </button>
         </div>
       </nav>
-      {open && (
-        <div className="md:hidden glass border-t border-[#2a2a38] animate-fade-in">
+      <div className={`md:hidden overflow-hidden transition-all duration-300 ease-out ${open ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'}`}>
+        <div className="glass border-t border-[#2a2a38]">
           <div className="px-4 py-4 space-y-1">
             {navItems.map((item) => (
               <a
@@ -86,7 +104,7 @@ export const Header: React.FC = () => {
             ))}
           </div>
         </div>
-      )}
+      </div>
     </header>
   )
 }
