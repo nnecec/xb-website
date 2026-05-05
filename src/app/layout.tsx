@@ -72,6 +72,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN" className={`${geistSans.variable} ${geistMono.variable}`}>
+      <head>
+        <link rel="alternate" type="text/markdown" href="/llms.txt" />
+      </head>
       <body className="min-h-full flex flex-col antialiased">{children}</body>
     </html>
   );
