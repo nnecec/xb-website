@@ -1,4 +1,5 @@
 import { faqItems, siteConfig } from '@/app/site'
+import ChangelogSection from '@/components/ChangelogSection'
 import ComparisonSection from '@/components/ComparisonSection'
 import CTASection from '@/components/CTASection'
 import FAQSection from '@/components/FAQSection'
@@ -75,6 +76,7 @@ export default function Home() {
       <ComparisonSection />
       <FeaturesSection />
       <TestimonialsSection />
+      <ChangelogSection />
       <FAQSection />
       <CTASection />
       <Footer />
