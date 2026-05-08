@@ -5,7 +5,7 @@ import { siteConfig } from '@/app/site'
 
 const navItems = [
   { label: '功能特点', href: '#features' },
-  { label: '安装前后', href: '#comparison' },
+  { label: '更新记录', href: '#changelog' },
   { label: '用户评价', href: '#reviews' },
   { label: '常见问题', href: '#faq' },
 ]
