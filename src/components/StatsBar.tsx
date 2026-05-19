@@ -1,6 +1,8 @@
 'use client'
 import { useEffect, useState, useRef, useCallback } from 'react'
 
+import { siteConfig } from '@/app/site'
+
 interface GitHubStats {
   stars: number
   version: string
@@ -45,7 +47,6 @@ function useCountUp(end: number, duration: number = 2000, start: number = 0) {
 
 export const StatsBar: React.FC = () => {
   const [stats, setStats] = useState<GitHubStats | null>(null)
-  const { count: displayStars, startAnimation } = useCountUp(stats?.stars ?? 2847, 2500)
   const hasStartedRef = useRef(false)
 
   useEffect(() => {
@@ -54,14 +55,9 @@ export const StatsBar: React.FC = () => {
 
     fetch('/api/github')
       .then((res) => res.json())
-      .then((data) => {
-        setStats(data)
-        setTimeout(startAnimation, 800)
-      })
-      .catch(() => {
-        setTimeout(startAnimation, 800)
-      })
-  }, [startAnimation])
+      .then((data) => setStats(data))
+      .catch(() => {})
+  }, [])
 
   return (
     <div className="w-full border-b border-[#2a2a38] bg-[#0a0a0f] text-[#5a5a68]">
@@ -71,8 +67,26 @@ export const StatsBar: React.FC = () => {
           <span className="text-[#00ff88]">Open Source</span>
         </span>
         <span className="flex items-center gap-2 text-xs tracking-wide uppercase">
-          Chrome 插件
-          <span className="font-semibold text-[#e8e8ec] tabular-nums">2,847</span>
+          <a
+            href={siteConfig.installUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#e8e8ec] transition-colors"
+          >
+            Chrome
+          </a>
+          <span className="font-semibold text-[#e8e8ec] tabular-nums">已上架</span>
+        </span>
+        <span className="flex items-center gap-2 text-xs tracking-wide uppercase">
+          <a
+            href={siteConfig.firefoxInstallUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#e8e8ec] transition-colors"
+          >
+            Firefox
+          </a>
+          <span className="font-semibold text-[#e8e8ec] tabular-nums">已上架</span>
         </span>
         <span className="flex items-center gap-2 text-xs tracking-wide uppercase">
           微博净化

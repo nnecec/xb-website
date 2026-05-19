@@ -15,7 +15,7 @@ interface FeatureWithImage {
 interface Feature {
   title: string
   description: string
-  icon?: React.ReactNode
+  delay?: number
 }
 
 const featuresWithImage: FeatureWithImage[] = [
@@ -24,34 +24,58 @@ const featuresWithImage: FeatureWithImage[] = [
     label: 'CLEANEST',
     title: '极简界面、没有广告',
     description:
-      '彻底剥离所有商业化元素 — 信息流广告、侧栏推广、热搜植入、VIP 横幅，全部清零。重新构建符合现代审美的纯净界面，让你只为内容停留。',
-    tags: ['零广告', '超简洁', 'X-Liked 布局'],
+      '彻底剥离所有商业化元素 — 信息流广告、侧栏推广、热搜植入、VIP 横幅，全部清零。支持 X 布局风格一键切换，关于转发链渲染、话题页等均有独立开关，一切由你决定。',
+    tags: ['零广告', 'X 布局', '转发链开关', '话题页'],
     imagePlaceholder: '/images/xb_timeline.jpeg',
   },
   {
     id: '🎨',
     label: 'PERSONALIZE',
-    title: '深度定制微博页面',
+    title: '深度定制，自由掌控',
     description:
-      '不止于"隐藏"，而是真正的页面级重构。CSS 注入级别的精细控制 — 字体、间距、配色、组件圆角、阴影层级，是所有细节的重新定制。',
-    tags: ['深度重构', '像素级定制', '主题系统'],
+      'CSS 注入级别的精细控制 — 浅色/深色背景色预设、组件圆角、阴影层级、间距调整。每一个像素、每一种风格都可以按你的偏好重新定制，打造属于你自己的微博。',
+    tags: ['主题系统', '像素级定制', '背景预设', '深度重构'],
     imagePlaceholder: '/images/xb_settings.jpeg',
   },
   {
     id: '📷',
     label: 'TAKE A SHOT',
-    title: '支持微博一键导出图片',
+    title: '微博一键导出高清长图',
     description:
-      '将任意微博、微博合集、对话串一键转换为高清长图，支持深色 / 浅色双主题、自动适配水印移除。分享思考再无障碍，告别截图拼接的繁琐流程。',
-    tags: ['长图导出', '高清渲染', '水印控制'],
+      '将任意微博、微博合集、对话串一键转换为高清长图，支持深色/浅色双主题、多种卡片模板、自动适配水印移除。分享思考再无障碍，告别截图拼接的繁琐流程。',
+    tags: ['长图导出', '多种模板', '高清渲染', '水印控制'],
     imagePlaceholder: '/images/xb_exporter.jpeg',
+  },
+  {
+    id: '🔤',
+    label: 'TYPOGRAPHY',
+    title: '自定义字体，随心换',
+    description:
+      '支持系统字体及可下载的开源字体，无论喜欢黑体、宋体还是思源系，都能让微博以你最舒适的字体呈现。全局一键切换，即刻见效。',
+    tags: ['系统字体', '开源字体', '一键切换', '阅读舒适'],
+    imagePlaceholder: '/images/xb_setting_fonts.jpeg',
+  },
+  {
+    id: '🕐',
+    label: 'HISTORY',
+    title: '浏览历史，不怕错过',
+    description:
+      '内置浏览历史功能，记录你最近看过的微博内容；同时支持查看关注列表和粉丝列表，社交关系一目了然，再也不怕找不到那条刷过的微博。',
+    tags: ['浏览历史', '关注列表', '粉丝列表', '随时回顾'],
+    imagePlaceholder: '/images/xb_history.jpeg',
   },
 ]
 
 const moreFeatures: Feature[] = [
   {
-    title: 'Chrome 安装即用',
-    description: '通过 Chrome 插件方式快速生效，不需要复杂配置即可开始使用。',
+    title: '视频增强',
+    description:
+      '支持视频下载保存、行内全屏播放，视频离开视口自动暂停，不浪费流量和性能。',
+  },
+  {
+    title: '关注分组筛选',
+    description:
+      '按关注分组筛选首页信息流，只关注你想看的圈子，不再被无关内容淹没。',
   },
   { title: '隐私优先', description: '以本地体验优化为主，不把收集用户数据作为产品价值。' },
   { title: '开源免费', description: '代码公开在 GitHub，适合希望长期使用和自行审查实现的用户。' },
@@ -95,7 +119,7 @@ const FeatureWithImageCard: React.FC<{ feature: FeatureWithImage; index: number 
         <p className="font-sans text-[15px] leading-[1.75] tracking-[0.375px] text-[#a0a0a0]">
           {feature.description}
         </p>
-        <div className="mt-3 flex gap-3">
+        <div className="mt-3 flex flex-wrap gap-3">
           {feature.tags.map((tag, idx) => (
             <div
               key={idx}
@@ -147,9 +171,9 @@ export const FeaturesSection: React.FC = () => {
           </span>
         </div>
 
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {moreFeatures.map((f, idx) => (
-            <FeatureCard key={idx} title={f.title} description={f.description} delay={idx * 100} />
+            <FeatureCard key={idx} title={f.title} description={f.description} delay={idx * 80} />
           ))}
         </div>
       </div>

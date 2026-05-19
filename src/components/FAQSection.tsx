@@ -14,7 +14,7 @@ export const FAQSection: React.FC = () => {
             常见问题
           </h2>
           <p className="animate-fade-in-up mx-auto mt-4 max-w-2xl text-base text-pretty text-[#9898a4] delay-200">
-            这里集中回答中文用户在寻找微博 Chrome 插件、微博去广告工具时最常问的几个问题。
+            这里集中回答中文用户在寻找微博浏览器插件、微博去广告工具时最常问的几个问题。
           </p>
         </div>
 

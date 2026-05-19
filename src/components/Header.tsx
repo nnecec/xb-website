@@ -1,7 +1,14 @@
 "use client";
 import React, { useState, useEffect } from 'react'
+import { siGooglechrome, siFirefoxbrowser, siGithub } from 'simple-icons'
 
 import { siteConfig } from '@/app/site'
+
+const Icon: React.FC<{ path: string; className?: string }> = ({ path, className = 'h-4 w-4' }) => (
+  <svg className={className} role="img" viewBox="0 0 24 24" fill="currentColor">
+    <path d={path} />
+  </svg>
+)
 
 const navItems = [
   { label: '功能特点', href: '#features' },
@@ -38,7 +45,7 @@ export const Header: React.FC = () => {
             xb
           </span>
           <span className="hidden sm:block text-xs font-mono text-[#5a5a68] uppercase tracking-widest">
-            微博 Chrome 插件
+            微博浏览器插件
           </span>
         </a>
         <div className="hidden md:flex items-center gap-1">
@@ -53,22 +60,33 @@ export const Header: React.FC = () => {
             </a>
           ))}
         </div>
-        <div className="flex items-center gap-2">
-          <a 
+        <div className="flex items-center gap-3">
+          <a
             href={siteConfig.installUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-2 rounded-lg bg-[#2a2a38] px-4 py-2 text-sm text-[#e8e8ec] hover:bg-[#3a3a4a] hover:text-[#00ff88] transition-all duration-200"
+            aria-label="Chrome 商店"
+            className="hidden sm:inline-flex items-center justify-center h-9 w-9 rounded-lg border border-[#2a2a38] text-[#9898a4] hover:text-[#e8e8ec] hover:border-[#3a3a4a] transition-all duration-200"
           >
-            安装插件
+            <Icon path={siGooglechrome.path} />
           </a>
-          <a 
+          <a
+            href={siteConfig.firefoxInstallUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Firefox 商店"
+            className="hidden sm:inline-flex items-center justify-center h-9 w-9 rounded-lg border border-[#2a2a38] text-[#9898a4] hover:text-[#e8e8ec] hover:border-[#3a3a4a] transition-all duration-200"
+          >
+            <Icon path={siFirefoxbrowser.path} />
+          </a>
+          <a
             href={siteConfig.repoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-2 rounded-lg border border-[#2a2a38] px-4 py-2 text-sm text-[#9898a4] hover:text-[#e8e8ec] hover:border-[#3a3a4a] transition-all duration-200"
+            aria-label="GitHub"
+            className="hidden sm:inline-flex items-center justify-center h-9 w-9 rounded-lg border border-[#2a2a38] text-[#9898a4] hover:text-[#e8e8ec] hover:border-[#3a3a4a] transition-all duration-200"
           >
-            GitHub
+            <Icon path={siGithub.path} />
           </a>
           <button
             aria-label="Menu"

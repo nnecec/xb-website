@@ -18,7 +18,7 @@ export default function Home() {
     alternateName: 'XB 微博插件',
     applicationCategory: 'BrowserApplication',
     operatingSystem: 'Any',
-    browserRequirements: '需要支持 Chrome 扩展的浏览器',
+    browserRequirements: '需要支持 Chrome 或 Firefox 扩展的浏览器',
     inLanguage: 'zh-CN',
     isAccessibleForFree: true,
     offers: {
@@ -30,7 +30,7 @@ export default function Home() {
     url: siteConfig.url,
     installUrl: siteConfig.installUrl,
     screenshot: [siteConfig.ogImage],
-    sameAs: [siteConfig.repoUrl, siteConfig.installUrl],
+    sameAs: [siteConfig.repoUrl, siteConfig.installUrl, siteConfig.firefoxInstallUrl],
     author: {
       '@type': 'Person',
       name: siteConfig.creator,
@@ -43,7 +43,13 @@ export default function Home() {
       '开源免费，隐私优先',
       '深度定制微博页面',
       '个性化设置',
-      '一键导出高清长图',
+      '一键导出高清长图，支持多种卡片模板',
+      '支持应用内发微博',
+      '自定义字体',
+      '按关注分组筛选信息流',
+      '浏览历史',
+      '视频下载与全屏播放',
+      'X 布局风格切换',
     ],
   }
 

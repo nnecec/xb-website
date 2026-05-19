@@ -7,7 +7,7 @@ export const Footer: React.FC = () => {
     <footer className="w-full border-t border-[#2a2a38] bg-[#0a0a0f] text-[#5a5a68]">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-8 sm:px-6 md:flex-row lg:px-8">
         <div className="flex items-center gap-6">
-          <span className="text-sm">微博 Chrome 插件</span>
+          <span className="text-sm">微博浏览器插件</span>
           <span className="text-[#2a2a38]">•</span>
           <span className="text-sm">GPL-3.0 License</span>
         </div>

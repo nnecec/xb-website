@@ -11,10 +11,10 @@ export const CTASection: React.FC = () => {
           现在就把微博变清爽
         </h2>
         <p className="animate-fade-in-up text-pretty delay-100 text-base text-[#9898a4] mt-4 max-w-lg mx-auto">
-          如果你正在找一款好用的微博插件，想要极简界面、深度定制或一键导图，XB 可以直接开始解决这些问题。
+          去广告、发微博、自定义字体、视频下载… 选你喜欢的浏览器，安装即用。
         </p>
         <div className="animate-fade-in-up delay-200 mt-10 flex flex-wrap justify-center gap-4">
-          <a 
+          <a
             href={siteConfig.installUrl}
             target="_blank"
             rel="noopener noreferrer"
@@ -23,7 +23,16 @@ export const CTASection: React.FC = () => {
             <span className="relative z-10">去 Chrome 商店安装</span>
             <div className="absolute inset-0 bg-[#00ddaa] translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
           </a>
-          <a 
+          <a
+            href={siteConfig.firefoxInstallUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative px-8 py-4 rounded-full bg-[#ff6611] text-white font-semibold text-base overflow-hidden transition-all duration-300 hover:shadow-[0_0_40px_rgba(255,102,17,0.3)] active:scale-[0.96]"
+          >
+            <span className="relative z-10">去 Firefox 商店安装</span>
+            <div className="absolute inset-0 bg-[#e05500] translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+          </a>
+          <a
             href={siteConfig.repoUrl}
             target="_blank"
             rel="noopener noreferrer"

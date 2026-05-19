@@ -11,15 +11,15 @@ export const Hero: React.FC = () => {
         <div className="absolute bottom-0 right-1/4 size-[500px] bg-[radial-gradient(circle,rgba(255,0,255,0.06)_0%,transparent_70%)] blur-3xl" />
         <div className="absolute top-1/2 left-1/2 size-[400px] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(circle,rgba(0,212,255,0.05)_0%,transparent_70%)] blur-3xl" />
       </div>
-      
+
       <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
         <div className="animate-fade-in-up mb-8 inline-flex items-center gap-2 rounded-full border border-[#2a2a38] bg-[#12121a]/80 px-4 py-1.5 backdrop-blur-sm">
           <span className="flex h-2 w-2 animate-pulse rounded-full bg-[#00ff88]" />
           <span className="font-mono text-xs tracking-[0.2em] text-[#00ff88] uppercase">
-            Weibo Chrome Extension
+            Weibo Browser Extension — Chrome & Firefox
           </span>
         </div>
-        
+
         <h1 className="animate-fade-in-up text-5xl leading-[1.1] font-black tracking-tight text-balance text-[#e8e8ec] md:text-7xl lg:text-8xl">
           <span className="inline bg-gradient-to-r from-[#00ff88] via-[#00d4ff] to-[#ff00ff] bg-clip-text text-transparent">
             XB
@@ -29,19 +29,19 @@ export const Hero: React.FC = () => {
         <h1 className="animate-fade-in-up text-3xl font-black tracking-tight text-balance text-[#9898a4] md:text-5xl lg:text-6xl delay-100">
           极致体验
         </h1>
-        
-<p className="animate-fade-in-up mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-pretty text-[#9898a4] delay-200 md:text-xl">
-          一键实现微博去广告、精简侧栏与推荐内容，减少噪音干扰，让你更专注地浏览真正想看的微博内容。
+
+        <p className="animate-fade-in-up mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-pretty text-[#9898a4] delay-200 md:text-xl">
+          一键实现微博去广告、精简侧栏与推荐内容，减少噪音干扰，让你更专注地浏览真正想看的微博内容。同时支持发微博、自定义字体、关注分组等深度功能。
         </p>
-        
+
         <div className="animate-fade-in-up mt-10 flex flex-wrap justify-center gap-2.5 text-xs tracking-[0.16em] text-[#6f6f7b] uppercase delay-300">
-          {['零广告', '深度定制', '个性化设置', '一键导出图片', '开源免费'].map((tag, i) => (
+          {['零广告', '发微博', '自定义字体', '视频下载', '分组筛选', '一键导出图片', '开源免费', 'Firefox 支持'].map((tag, i) => (
             <span key={tag} className="rounded-full border border-[#2a2a38] bg-[#12121a]/50 px-4 py-2 transition-all duration-300 hover:border-[#00ff88] hover:text-[#00ff88]">
               {tag}
             </span>
           ))}
         </div>
-        
+
         <div className="animate-fade-in-up mt-12 flex flex-wrap justify-center gap-4 delay-400">
           <a
             href={siteConfig.installUrl}
@@ -52,8 +52,20 @@ export const Hero: React.FC = () => {
             <svg className="h-5 w-5 transition-transform duration-300 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
             </svg>
-            <span className="relative z-10">安装微博 Chrome 插件</span>
+            <span className="relative z-10">安装 Chrome 插件</span>
             <div className="absolute inset-0 bg-[#00ddaa] translate-y-full transition-transform duration-300 group-hover:translate-y-0" />
+          </a>
+          <a
+            href={siteConfig.firefoxInstallUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative inline-flex items-center gap-2.5 overflow-hidden rounded-full bg-[#ff6611] px-8 py-4 font-semibold text-white transition-all duration-300 hover:shadow-[0_0_40px_rgba(255,102,17,0.4)] active:scale-[0.96]"
+          >
+            <svg className="h-5 w-5 transition-transform duration-300 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+            </svg>
+            <span className="relative z-10">安装 Firefox 插件</span>
+            <div className="absolute inset-0 bg-[#e05500] translate-y-full transition-transform duration-300 group-hover:translate-y-0" />
           </a>
           <a
             href={siteConfig.repoUrl}
@@ -68,7 +80,7 @@ export const Hero: React.FC = () => {
             <div className="absolute inset-0 bg-[#00ff8808] translate-y-full transition-transform duration-300 group-hover:translate-y-0" />
           </a>
         </div>
-        
+
         <div className="animate-fade-in-up mt-16 delay-500 hidden md:flex justify-center">
           <div className="flex flex-col items-center gap-2 text-[#5a5a68]">
             <span className="text-xs tracking-widest uppercase">Scroll to explore</span>
