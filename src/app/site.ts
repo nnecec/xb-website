@@ -2,7 +2,7 @@ export const siteConfig = {
   name: 'XB',
   title: 'XB - 更清爽的微博浏览器插件',
   description:
-    'XB 是一款面向中文用户的微博浏览器插件，支持微博去广告、精简侧栏与推荐内容，帮助你获得更清爽、更专注的微博浏览体验，并可一键将微博导出为图片。同时支持发微博、自定义字体、关注分组筛选、浏览历史等深度定制功能。已上架 Chrome 和 Firefox 商店。',
+    'XB 为微博重新设计。去广告、发微博、自定义字体、高清导图。Chrome 与 Firefox 均已上架。简洁，专注，免费。',
   url: 'https://xb-extension.vercel.app',
   locale: 'zh_CN',
   installUrl:
@@ -37,25 +37,23 @@ export const faqItems = [
   {
     question: 'XB 是什么？',
     answer:
-      'XB 是一款微博浏览器插件，用来去除广告、精简页面布局、发微博、自定义字体，并让微博界面更清爽、更接近高效的信息流阅读体验，还可一键将微博导出为高清长图。',
+      '为微博重新设计的浏览器插件。去广告，发微博，自定义字体，高清导图 — 把微博变得更干净、更好用。',
   },
   {
-    question: 'XB 能解决哪些微博界面问题？',
+    question: 'XB 能解决什么？',
     answer:
-      '它可以帮助你减少微博信息流广告、弱化干扰元素、精简侧栏和推荐内容，支持按关注分组筛选信息流、浏览历史回顾，还能直接在插件内发微博，让刷微博时更专注于真正想看的内容。',
+      '告别广告和杂乱推荐。按关注分组筛选信息流，浏览历史随时找回。让你只看见想看的。',
   },
   {
-    question: 'XB 支持哪些浏览器？',
-    answer:
-      'XB 已同时上架 Chrome Web Store 和 Firefox Add-ons，也兼容大多数基于 Chromium 的浏览器环境（如 Edge、Arc 等）。',
+    question: '支持哪些浏览器？',
+    answer: 'Chrome、Edge、Arc，以及 Firefox。都已上架商店，即装即用。',
   },
   {
-    question: 'XB 是否开源？',
-    answer:
-      '是。项目代码已公开在 GitHub，你可以查看实现细节、提交 issue，也可以参与贡献。',
+    question: '开源吗？',
+    answer: '完全开源。代码在 GitHub 上公开，可审查可贡献。',
   },
   {
-    question: 'XB 会收集用户数据吗？',
-    answer: 'XB 以本地体验优化为主，强调隐私优先，不以收集用户数据为产品价值。',
+    question: '会收集我的数据吗？',
+    answer: '不会。一切处理都在你的浏览器本地完成。',
   },
 ] as const

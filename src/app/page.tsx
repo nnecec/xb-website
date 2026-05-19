@@ -4,9 +4,11 @@ import ComparisonSection from '@/components/ComparisonSection'
 import CTASection from '@/components/CTASection'
 import FAQSection from '@/components/FAQSection'
 import FeaturesSection from '@/components/FeaturesSection'
+import { FirstScreen } from '@/components/FirstScreen'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
+import { ManifestoSection } from '@/components/ManifestoSection'
 import StatsBar from '@/components/StatsBar'
 import TestimonialsSection from '@/components/TestimonialsSection'
 
@@ -18,7 +20,7 @@ export default function Home() {
     alternateName: 'XB 微博插件',
     applicationCategory: 'BrowserApplication',
     operatingSystem: 'Any',
-    browserRequirements: '需要支持 Chrome 或 Firefox 扩展的浏览器',
+    browserRequirements: 'Chrome、Edge、Arc 或 Firefox',
     inLanguage: 'zh-CN',
     isAccessibleForFree: true,
     offers: {
@@ -38,18 +40,15 @@ export default function Home() {
     },
     featureList: [
       '微博去广告',
-      '精简微博侧栏与推荐内容',
-      '极致清爽的微博阅读体验',
-      '开源免费，隐私优先',
-      '深度定制微博页面',
-      '个性化设置',
-      '一键导出高清长图，支持多种卡片模板',
-      '支持应用内发微博',
+      'X 风格布局',
       '自定义字体',
-      '按关注分组筛选信息流',
+      '高清长图导出',
+      '应用内发微博',
+      '关注分组筛选',
       '浏览历史',
       '视频下载与全屏播放',
-      'X 布局风格切换',
+      '开源免费',
+      '隐私优先',
     ],
   }
 
@@ -77,10 +76,13 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <Header />
-      <StatsBar />
-      <Hero />
+      <FirstScreen>
+        <StatsBar />
+        <Hero />
+      </FirstScreen>
       <ComparisonSection />
       <FeaturesSection />
+      <ManifestoSection />
       <TestimonialsSection />
       <ChangelogSection />
       <FAQSection />

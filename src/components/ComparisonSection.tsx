@@ -1,25 +1,26 @@
+'use client'
+
 import React from 'react'
 
 import { BeforeAfterSlider } from './BeforeAfterSlider'
+import { SectionHeader } from './SectionHeader'
+import { BlurFade } from '@/components/ui/blur-fade'
+import { ProgressiveBlur } from '@/components/ui/progressive-blur'
 
 export const ComparisonSection: React.FC = () => {
   return (
     <section id="comparison" className="w-full bg-[#0a0a0f] py-24 text-[#e8e8ec]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-16 text-center">
-          <span className="animate-fade-in-up font-mono text-xs tracking-[0.2em] text-[#ff00ff] uppercase">
-            // BEFORE AND AFTER
-          </span>
-          <h2 className="animate-fade-in-up mt-4 text-4xl font-black tracking-tight text-balance uppercase delay-100 md:text-5xl">
-            安装前后对比
-          </h2>
-          <p className="animate-fade-in-up mt-4 text-base text-pretty text-[#9898a4] delay-200">
-            同一个微博页面，安装 XB 之后可以更直观地看到去广告与精简布局的效果。
-          </p>
-        </div>
+        <SectionHeader
+          label="// 前后对比"
+          title="一眼看见差别。"
+          description="左滑查看。同一个页面，XB 让它焕然一新。"
+          labelColor="#ff00ff"
+          titleColors={['#ff00ff', '#00d4ff', '#00ff88', '#e8e8ec']}
+        />
 
-        <div className="animate-fade-in-up mx-auto max-w-4xl delay-300">
-          <div className="overflow-hidden rounded-xl border border-[#2a2a38] bg-[#12121a] p-4">
+        <BlurFade inView delay={0.2} direction="up" offset={24}>
+          <div className="relative mx-auto max-w-4xl overflow-hidden rounded-xl border border-[#2a2a38] bg-[#12121a] p-4">
             <BeforeAfterSlider
               firstImage={{
                 imageUrl: '/images/weibo-before.jpeg',
@@ -31,18 +32,19 @@ export const ComparisonSection: React.FC = () => {
               }}
               className="rounded-lg"
             />
+            <ProgressiveBlur position="bottom" height="28%" className="rounded-b-lg" />
             <div className="mt-4 flex items-center justify-between px-2">
               <div className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-[#00ff88]" />
-                <span className="text-sm text-[#9898a4]">安装后：更清爽的微博界面</span>
+                <span className="size-2 rounded-full bg-[#00ff88]" />
+                <span className="text-sm text-[#9898a4]">安装后</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-[#ff00ff]" />
-                <span className="text-sm text-[#9898a4]">安装前：原始微博界面</span>
+                <span className="size-2 rounded-full bg-[#ff00ff]" />
+                <span className="text-sm text-[#9898a4]">安装前</span>
               </div>
             </div>
           </div>
-        </div>
+        </BlurFade>
       </div>
     </section>
   )

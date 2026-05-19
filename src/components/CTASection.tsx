@@ -1,47 +1,42 @@
+'use client'
+
 import React from 'react'
 
-import { siteConfig } from '@/app/site'
+import { InstallButtons } from '@/components/InstallButtons'
+import { DiaTextReveal } from '@/components/ui/dia-text-reveal'
+import { BlurFade } from '@/components/ui/blur-fade'
+import { TextAnimate } from '@/components/ui/text-animate'
 
 export const CTASection: React.FC = () => {
   return (
-    <section className="w-full bg-[#0a0a0f] text-[#e8e8ec] py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-t from-[#00ff8808] via-transparent to-transparent pointer-events-none" />
-      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center relative">
-        <h2 className="animate-fade-in-up text-balance text-4xl md:text-5xl font-black uppercase tracking-tight">
-          现在就把微博变清爽
+    <section className="relative w-full overflow-hidden bg-[#0a0a0f] py-24 text-[#e8e8ec]">
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#00ff8808] via-transparent to-transparent" />
+      <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <h2 className="text-4xl font-black tracking-tight text-balance uppercase md:text-5xl">
+          <DiaTextReveal
+            text="换个方式刷微博。"
+            colors={['#00ff88', '#00d4ff', '#ff00ff', '#e8e8ec']}
+            textColor="#e8e8ec"
+            duration={1.6}
+            className="text-4xl font-black uppercase md:text-5xl"
+          />
         </h2>
-        <p className="animate-fade-in-up text-pretty delay-100 text-base text-[#9898a4] mt-4 max-w-lg mx-auto">
-          去广告、发微博、自定义字体、视频下载… 选你喜欢的浏览器，安装即用。
-        </p>
-        <div className="animate-fade-in-up delay-200 mt-10 flex flex-wrap justify-center gap-4">
-          <a
-            href={siteConfig.installUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative px-8 py-4 rounded-full bg-[#00ff88] text-[#09090c] font-semibold text-base overflow-hidden transition-all duration-300 hover:shadow-[0_0_40px_rgba(0,255,136,0.3)] active:scale-[0.96] transition-transform duration-150 ease-out"
+        <BlurFade inView delay={0.15}>
+          <TextAnimate
+            animation="blurIn"
+            by="word"
+            startOnView
+            once
+            className="mx-auto mt-4 max-w-lg text-base text-pretty text-[#9898a4]"
           >
-            <span className="relative z-10">去 Chrome 商店安装</span>
-            <div className="absolute inset-0 bg-[#00ddaa] translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-          </a>
-          <a
-            href={siteConfig.firefoxInstallUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative px-8 py-4 rounded-full bg-[#ff6611] text-white font-semibold text-base overflow-hidden transition-all duration-300 hover:shadow-[0_0_40px_rgba(255,102,17,0.3)] active:scale-[0.96]"
-          >
-            <span className="relative z-10">去 Firefox 商店安装</span>
-            <div className="absolute inset-0 bg-[#e05500] translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-          </a>
-          <a
-            href={siteConfig.repoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative px-8 py-4 rounded-full border border-[#2a2a38] text-[#e8e8ec] font-semibold text-base overflow-hidden transition-all duration-300 hover:border-[#00ff88] hover:text-[#00ff88]"
-          >
-            <span className="relative z-10">查看 GitHub 仓库</span>
-            <div className="absolute inset-0 bg-[#00ff8808] translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-          </a>
-        </div>
+            免费。无广告。开源的。选你喜欢的浏览器，现在就开始。
+          </TextAnimate>
+        </BlurFade>
+        <BlurFade inView delay={0.25}>
+          <div className="mt-10 flex justify-center">
+            <InstallButtons variant="section" />
+          </div>
+        </BlurFade>
       </div>
     </section>
   )

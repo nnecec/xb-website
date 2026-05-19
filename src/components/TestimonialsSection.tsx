@@ -1,6 +1,9 @@
+'use client'
+
 import React from 'react'
 
 import { TestimonialCard } from './TestimonialCard'
+import { SectionHeader } from './SectionHeader'
 
 const testimonials = [
   {
@@ -24,26 +27,15 @@ export const TestimonialsSection: React.FC = () => {
   return (
     <section id="reviews" className="w-full bg-[#0a0a0f] py-24 text-[#e8e8ec]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-16 text-center">
-          <span className="animate-fade-in-up font-mono text-xs tracking-[0.2em] text-[#00ff88] uppercase">
-            // User Feedback
-          </span>
-          <h2 className="animate-fade-in-up mt-4 text-4xl font-black tracking-tight text-balance uppercase delay-100 md:text-5xl">
-            用户评价
-          </h2>
-          <p className="animate-fade-in-up mx-auto mt-4 max-w-2xl text-base text-pretty text-[#9898a4] delay-200">
-            对希望找到微博插件、微博去广告工具或更清爽微博体验的用户来说，稳定和可信同样重要。
-          </p>
-        </div>
+        <SectionHeader
+          label="// User Feedback"
+          title="用户评价"
+          description="对希望找到微博插件、微博去广告工具或更清爽微博体验的用户来说，稳定和可信同样重要。"
+          labelColor="#00ff88"
+        />
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
           {testimonials.map((t, idx) => (
-            <TestimonialCard
-              key={idx}
-              name={t.name}
-              role={t.role}
-              text={t.text}
-              delay={idx * 100}
-            />
+            <TestimonialCard key={t.name} name={t.name} role={t.role} text={t.text} index={idx} />
           ))}
         </div>
       </div>

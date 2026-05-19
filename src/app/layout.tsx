@@ -74,7 +74,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="zh-CN" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="zh-CN" className={`dark ${geistSans.variable} ${geistMono.variable}`}>
       <head>
         <link rel="alternate" type="text/markdown" href="/llms.txt" />
       </head>
