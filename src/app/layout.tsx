@@ -1,4 +1,4 @@
-import { GoogleTagManager } from '@next/third-parties/google'
+import { GoogleAnalytics } from '@next/third-parties/google'
 import type { Metadata } from 'next'
 
 import './globals.css'
@@ -78,7 +78,7 @@ export default function RootLayout({
       <head>
         <link rel="alternate" type="text/markdown" href="/llms.txt" />
       </head>
-      <GoogleTagManager gtmId="G-M7NWJPSRZK" />
+      <GoogleAnalytics gaId="G-M7NWJPSRZK" />
       <body className="flex min-h-full flex-col antialiased">{children}</body>
     </html>
   )
