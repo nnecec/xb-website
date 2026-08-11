@@ -21,7 +21,7 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({
   return (
     <BlurFade inView delay={index * 0.1} direction="up" offset={24}>
       <MagicCard
-        className="flex h-full flex-col justify-between rounded-xl border border-[#2a2a38] bg-[#12121a] p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#00ff8805]"
+        className="flex h-full flex-col justify-between rounded-xl border border-[#2a2a38] bg-[#12121a] p-6 transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#00ff8805]"
         gradientFrom="#00ff88"
         gradientTo="#00d4ff"
         gradientColor="#00ff8810"

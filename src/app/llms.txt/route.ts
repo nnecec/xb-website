@@ -1,6 +1,6 @@
 import { siteConfig } from '../site'
 
-const llmsContent = `# ${siteConfig.name} - ${siteConfig.title.replace('XB - ', '')}
+const llmsContent = `# ${siteConfig.name} - ${siteConfig.shortDescription}
 
 > ${siteConfig.description}
 
@@ -8,13 +8,15 @@ const llmsContent = `# ${siteConfig.name} - ${siteConfig.title.replace('XB - ', 
 
 - [Homepage](${siteConfig.url})
 - [Chrome Web Store](${siteConfig.installUrl})
+- [Microsoft Edge Add-ons](${siteConfig.edgeInstallUrl})
+- [Firefox Add-ons](${siteConfig.firefoxInstallUrl})
 - [GitHub](${siteConfig.repoUrl})
 
 ## Features
 
-- **极简界面、没有广告** — 去除信息流广告、侧栏推广、热搜植入等干扰元素
-- **深度定制微博页面** — CSS 注入级精细控制，打造个性化微博界面
-- **一键导出图片** — 高清长图导出，支持深色/浅色主题切换
+- **减少页面干扰** — 减少信息流广告、侧栏推广和热搜植入等元素
+- **调整微博外观** — 可设置字体、行高、主题和内容密度
+- **导出高清长图** — 支持深色和浅色主题
 
 ## Keywords
 

@@ -1,37 +1,32 @@
-import React from 'react'
+import { ArrowRight } from 'lucide-react'
+import Link from 'next/link'
 
 import { siteConfig } from '@/app/site'
 import { ChangelogReleases } from '@/components/ChangelogReleases'
+import { MotionReveal } from '@/components/MotionReveal'
 import { SectionHeader } from '@/components/SectionHeader'
+import { Button } from '@/components/ui/button'
 import { fetchRecentReleases } from '@/lib/github'
 
 export async function ChangelogSection() {
   const releases = await fetchRecentReleases(5)
-  const releasesListUrl = `${siteConfig.repoUrl}/releases`
 
   return (
-    <section id="changelog" className="w-full bg-[#12121a] py-24 text-[#e8e8ec]">
-      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <SectionHeader
-          label="// Changelog"
-          title="更新记录"
-          description="来自 GitHub Releases 的最近版本说明，便于快速了解插件迭代内容。"
-          labelColor="#ff00ff"
-          titleColors={['#ff00ff', '#00d4ff', '#00ff88', '#e8e8ec']}
-        />
-
-        <ChangelogReleases releases={releases} />
-
-        <div className="mt-10 flex justify-center">
-          <a
-            href={releasesListUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-[#2a2a38] bg-[#0a0a0f] px-6 py-2.5 text-sm font-semibold text-[#00d4ff] transition-colors hover:border-[#00d4ff]/40 hover:bg-[#12121a]"
-          >
-            查看更多
-            <span aria-hidden>→</span>
-          </a>
+    <section id="changelog" className="py-24 sm:py-32 lg:py-36">
+      <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
+        <div>
+          <MotionReveal className="flex flex-wrap items-end justify-between gap-6" distance={16}>
+            <SectionHeader label="版本历史" title="版本更新，都可查阅。" />
+            <Button variant="outline" asChild>
+              <Link href={siteConfig.routes.changelog}>
+                查看全部版本
+                <ArrowRight className="size-4" />
+              </Link>
+            </Button>
+          </MotionReveal>
+          <MotionReveal className="mt-2 max-w-5xl" delay={0.08} distance={20}>
+            <ChangelogReleases releases={releases} />
+          </MotionReveal>
         </div>
       </div>
     </section>

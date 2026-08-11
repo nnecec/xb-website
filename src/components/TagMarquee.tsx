@@ -10,9 +10,9 @@ const highlights = [
   '关注分组',
   '浏览历史',
   '视频下载',
-  '开源免费',
+  '开源',
   'Chrome & Firefox',
-  '隐私优先',
+  '本地处理',
 ]
 
 export function TagMarquee() {

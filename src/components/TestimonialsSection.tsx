@@ -2,8 +2,8 @@
 
 import React from 'react'
 
-import { TestimonialCard } from './TestimonialCard'
 import { SectionHeader } from './SectionHeader'
+import { TestimonialCard } from './TestimonialCard'
 
 const testimonials = [
   {
@@ -26,12 +26,11 @@ const testimonials = [
 export const TestimonialsSection: React.FC = () => {
   return (
     <section id="reviews" className="w-full bg-[#0a0a0f] py-24 text-[#e8e8ec]">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <SectionHeader
           label="// User Feedback"
           title="用户评价"
-          description="对希望找到微博插件、微博去广告工具或更清爽微博体验的用户来说，稳定和可信同样重要。"
-          labelColor="#00ff88"
+          description="选择微博扩展的用户，通常同样在意稳定性与可信度。"
         />
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
           {testimonials.map((t, idx) => (

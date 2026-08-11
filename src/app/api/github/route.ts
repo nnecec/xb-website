@@ -16,7 +16,7 @@ export async function GET() {
     )
   } catch {
     return NextResponse.json(
-      { stars: 0, version: 'v1.0.0', commits: 0 },
+      { stars: null, version: null, commits: 0 },
       {
         status: 200,
         headers: {

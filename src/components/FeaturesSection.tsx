@@ -1,183 +1,165 @@
-'use client'
-
 import Image from 'next/image'
-import React from 'react'
 
-import { FeatureCard } from './FeatureCard'
+import { MotionReveal } from './MotionReveal'
 import { SectionHeader } from './SectionHeader'
-import { BlurFade } from '@/components/ui/blur-fade'
 
-interface FeatureWithImage {
-  id: string
-  label: string
-  title: string
-  description: string
-  tags: string[]
-  imagePlaceholder?: string
-}
+const features = {
+  timeline: {
+    label: '时间线重写',
+    title: '减少干扰，留下内容。',
+    description: 'XB 减少广告、推广和冗余侧栏，重新梳理时间线、热搜和媒体播放的阅读层级。',
+    evidence: '减少广告与推广、梳理信息层级、保留原有操作路径',
+    image: '/images/xb_timeline.jpeg',
+    alt: 'XB 重新设计后的微博时间线、热搜与视频播放界面',
+  },
+  appearance: {
+    label: '阅读外观',
+    title: '界面按你的习惯设置。',
+    description: '字体、字号、字重、行高和主题都能按你的阅读习惯调整。',
+    evidence: '字体、行高、字重、浅色与深色主题',
+    image: '/images/xb_setting_fonts.jpeg',
+    alt: 'XB 深色长文阅读与字体设置界面',
+  },
+  history: {
+    label: '本地历史',
+    title: '看过的内容，随时找回。',
+    description: '浏览记录仅保存在当前设备，无需另建 XB 账号。',
+    evidence: '本地保存、随时清除、无需额外账号',
+    image: '/images/xb_history.jpeg',
+    alt: 'XB 本地微博浏览历史界面',
+  },
+  export: {
+    label: '内容导出',
+    title: '把微博整理成一张长图。',
+    description: '微博、对话串和合集可导出为高清长图，并按内容结构排版。',
+    evidence: '高清长图、多种卡片外观、适配长内容',
+    image: '/images/xb_exporter.jpeg',
+    alt: 'XB 高清长图导出面板与导出预览',
+  },
+} as const
 
-interface Feature {
-  title: string
-  description: string
-}
-
-const featuresWithImage: FeatureWithImage[] = [
-  {
-    id: '✨',
-    label: '无广告',
-    title: '干净，如此而已。',
-    description:
-      '信息流广告、侧栏推广、热搜植入 — 统统消失。X 布局一键切换。转发链、话题页各有独立开关。你决定看到什么。',
-    tags: ['零广告', 'X 布局', '转发链', '话题页'],
-    imagePlaceholder: '/images/xb_timeline.jpeg',
-  },
-  {
-    id: '🎨',
-    label: '定制',
-    title: '每个像素，听你的。',
-    description:
-      '浅色或深色背景、组件圆角、阴影层级、间距粗细 — 一切可调。它不只是插件，是你的微博。',
-    tags: ['主题系统', '背景预设', '像素级控制', '深度重构'],
-    imagePlaceholder: '/images/xb_settings.jpeg',
-  },
-  {
-    id: '📷',
-    label: '导图',
-    title: '一条微博，一张好图。',
-    description:
-      '微博、合集、对话串 — 选中即出高清长图。深浅双主题，多种卡片样式，水印自动去除。分享，就该这么简单。',
-    tags: ['高清长图', '多种模板', '深浅主题', '去水印'],
-    imagePlaceholder: '/images/xb_exporter.jpeg',
-  },
-  {
-    id: '🔤',
-    label: '字体',
-    title: '选一种你喜欢的字体。',
-    description:
-      '系统字体、开源字体自由选。黑体、宋体、思源 — 无论偏爱哪种风格，一键切换，即刻生效。阅读，本就该舒服。',
-    tags: ['系统字体', '开源字体', '一键切换', '阅读舒适'],
-    imagePlaceholder: '/images/xb_setting_fonts.jpeg',
-  },
-  {
-    id: '🕐',
-    label: '回顾',
-    title: '看过，就不会丢。',
-    description:
-      '浏览历史自动记录。关注列表、粉丝列表随手可查。那一条刷过去的好内容，随时找回。',
-    tags: ['浏览历史', '关注列表', '粉丝列表', '随时回顾'],
-    imagePlaceholder: '/images/xb_history.jpeg',
-  },
-]
-
-const moreFeatures: Feature[] = [
-  {
-    title: '视频增强',
-    description:
-      '行内全屏播放，离开画面自动暂停。也可以下载到本地，随时回看。',
-  },
-  {
-    title: '关注分组筛选',
-    description:
-      '只显示你关心的圈子。分组筛选信息流，不被其他内容打扰。',
-  },
-  { title: '隐私优先', description: '所有处理都在你的浏览器本地完成。不收集、不上传。' },
-  { title: '开源免费', description: '代码在 GitHub 完全公开。可审查，可参与，可长久信赖。' },
-]
-
-const FeatureWithImageCard: React.FC<{ feature: FeatureWithImage; index: number }> = ({
-  feature,
-  index,
-}) => {
-  const isEven = index % 2 === 0
+export function FeaturesSection() {
+  const { timeline, appearance, history, export: exportFeature } = features
 
   return (
-    <BlurFade inView delay={index * 0.08} direction={isEven ? 'left' : 'right'} offset={32}>
-      <div
-        className={`mb-24 flex w-full max-w-[1200px] flex-col items-center gap-10 lg:gap-16 ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}
-      >
-        <div className="relative h-[280px] w-full shrink-0 sm:h-[360px] lg:w-[560px]">
-          <div className="absolute top-0 left-0 z-10 size-5 border-t-2 border-l-2 border-[#2a2a3a]" />
-          <div className="relative flex size-full items-center justify-center overflow-hidden rounded-sm border border-[#2a2a3a] bg-[#12121a]">
-            <Image
-              src={feature.imagePlaceholder || ''}
-              alt={feature.title}
-              width={560}
-              height={360}
-              className="relative z-10 object-cover"
-            />
-          </div>
-        </div>
+    <section id="features" className="py-24 sm:py-32 lg:py-40">
+      <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
+        <MotionReveal distance={16}>
+          <SectionHeader label="产品能力" title="重新梳理微博的阅读方式。" />
+        </MotionReveal>
 
-        <div className="flex flex-1 flex-col gap-5">
-          <div className="flex items-center gap-3 text-[#00d4ff]">
-            <span className="font-mono text-xs tracking-[3px]">// {feature.id}</span>
-            <div className="h-px w-12 bg-[#00d4ff]" />
-            <span className="font-mono text-[10px] font-bold tracking-[2.5px] uppercase">
-              &gt; {feature.label}
-            </span>
-          </div>
-          <h3 className="font-sans text-[28px] leading-[1.15] font-black tracking-[-0.85px] text-[#e0e0e0] sm:text-[34px]">
-            {feature.title}
-          </h3>
-          <p className="font-sans text-[15px] leading-[1.75] tracking-[0.375px] text-[#a0a0a0]">
-            {feature.description}
-          </p>
-          <div className="mt-3 flex flex-wrap gap-3">
-            {feature.tags.map((tag) => (
-              <div
-                key={tag}
-                className="flex items-center border border-[#2a2a3a] bg-[#12121a] px-3 py-1.5"
-              >
-                <span className="font-mono text-[10px] tracking-[1.5px] text-[#6b7280] uppercase">
-                  {tag}
-                </span>
+        <MotionReveal className="mt-12 lg:mt-16" distance={28} clip>
+          <article>
+            <div className="max-w-2xl">
+              <p className="text-muted-foreground text-sm font-medium">{timeline.label}</p>
+              <h3 className="mt-4 text-3xl leading-[1.08] font-semibold sm:text-4xl">
+                {timeline.title}
+              </h3>
+              <p className="text-muted-foreground mt-5 text-base leading-8">
+                {timeline.description}
+              </p>
+              <p className="mt-6 text-sm leading-7 font-medium">{timeline.evidence}</p>
+            </div>
+            <figure className="bg-card product-shadow mt-10 overflow-hidden rounded-xl border lg:mt-14">
+              <div className="bg-muted aspect-[16/9] overflow-hidden">
+                <Image
+                  src={timeline.image}
+                  alt={timeline.alt}
+                  width={2048}
+                  height={1536}
+                  sizes="(min-width: 1200px) 1200px, 100vw"
+                  className="size-full object-cover"
+                />
               </div>
-            ))}
-          </div>
+              <figcaption className="text-muted-foreground px-4 py-3 text-xs leading-6 sm:px-5">
+                时间线、热搜和视频播放采用一致、清晰的阅读层级。
+              </figcaption>
+            </figure>
+          </article>
+        </MotionReveal>
+
+        <div className="mt-24 grid gap-14 lg:mt-32 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20">
+          <MotionReveal distance={24} clip>
+            <article>
+              <div className="max-w-xl">
+                <p className="text-muted-foreground text-sm font-medium">{appearance.label}</p>
+                <h3 className="mt-3 text-3xl leading-[1.08] font-semibold">{appearance.title}</h3>
+                <p className="text-muted-foreground mt-4 text-sm leading-7">
+                  {appearance.description}
+                </p>
+              </div>
+              <figure className="bg-card mt-7 overflow-hidden rounded-xl border">
+                <div className="bg-muted aspect-[4/3] overflow-hidden">
+                  <Image
+                    src={appearance.image}
+                    alt={appearance.alt}
+                    width={2048}
+                    height={1536}
+                    sizes="(min-width: 1024px) 58vw, 100vw"
+                    className="size-full object-cover"
+                  />
+                </div>
+              </figure>
+              <p className="text-muted-foreground mt-4 text-xs leading-6">{appearance.evidence}</p>
+            </article>
+          </MotionReveal>
+
+          <MotionReveal delay={0.1} distance={24} clip className="lg:mt-24">
+            <article>
+              <div className="max-w-lg">
+                <p className="text-muted-foreground text-sm font-medium">{history.label}</p>
+                <h3 className="mt-3 text-3xl leading-[1.08] font-semibold">{history.title}</h3>
+                <p className="text-muted-foreground mt-4 text-sm leading-7">
+                  {history.description}
+                </p>
+              </div>
+              <figure className="bg-card mt-7 overflow-hidden rounded-xl border">
+                <div className="bg-muted aspect-[4/3] overflow-hidden">
+                  <Image
+                    src={history.image}
+                    alt={history.alt}
+                    width={2048}
+                    height={1536}
+                    sizes="(min-width: 1024px) 42vw, 100vw"
+                    className="size-full object-cover"
+                  />
+                </div>
+              </figure>
+              <p className="text-muted-foreground mt-4 text-xs leading-6">{history.evidence}</p>
+            </article>
+          </MotionReveal>
         </div>
-      </div>
-    </BlurFade>
-  )
-}
 
-export const FeaturesSection: React.FC = () => {
-  return (
-    <section
-      id="features"
-      className="relative flex flex-col items-center overflow-hidden bg-[#0a0a0f] px-6 py-[120px] text-[#e8e8ec] sm:px-12 lg:px-20"
-    >
-      <div className="absolute inset-0 flex flex-col bg-[linear-gradient(rgba(0,255,136,0.03)_0%,rgba(0,0,0,0)_100%),linear-gradient(90deg,rgba(0,255,136,0.03)_0%,rgba(0,0,0,0)_100%)]" />
-      <div className="absolute top-[200px] left-[-200px] flex size-[600px] flex-col bg-[radial-gradient(circle,rgba(0,212,255,0.06)_0%,rgba(0,0,0,0)_70%)]" />
-      <div className="absolute right-[-100px] bottom-[100px] flex size-[500px] flex-col bg-[radial-gradient(circle,rgba(255,0,255,0.05)_0%,rgba(0,0,0,0)_70%)]" />
-
-      <div className="relative w-full">
-        <SectionHeader
-          label="// 特性"
-          title="为微博重新设计。"
-          description="每一项，都是你真正需要的。"
-        />
-      </div>
-
-      <div className="relative flex flex-col items-center">
-        {featuresWithImage.map((feature, index) => (
-          <FeatureWithImageCard key={feature.id} feature={feature} index={index} />
-        ))}
-      </div>
-
-      <div className="relative mt-8 w-full max-w-7xl">
-        <BlurFade inView>
-          <div className="relative mb-12 flex flex-col items-center gap-3">
-            <span className="font-mono text-xs tracking-[3.6px] text-[#00d4ff] uppercase">
-              // 还有更多
-            </span>
-          </div>
-        </BlurFade>
-
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {moreFeatures.map((f, idx) => (
-            <FeatureCard key={f.title} title={f.title} description={f.description} index={idx} />
-          ))}
-        </div>
+        <MotionReveal className="mt-20 lg:mt-28" distance={28} clip>
+          <article className="bg-muted/45 overflow-hidden rounded-xl">
+            <figure className="bg-card">
+              <div className="bg-muted aspect-[16/9] overflow-hidden">
+                <Image
+                  src={exportFeature.image}
+                  alt={exportFeature.alt}
+                  width={2048}
+                  height={1536}
+                  sizes="(min-width: 1200px) 1200px, 100vw"
+                  className="size-full object-cover"
+                />
+              </div>
+            </figure>
+            <div className="grid gap-6 p-7 sm:p-10 lg:grid-cols-12 lg:items-end lg:gap-10 lg:p-12">
+              <div className="lg:col-span-5">
+                <p className="text-muted-foreground text-sm font-medium">{exportFeature.label}</p>
+                <h3 className="mt-4 text-3xl leading-[1.08] font-semibold sm:text-4xl">
+                  {exportFeature.title}
+                </h3>
+              </div>
+              <div className="lg:col-span-7">
+                <p className="text-muted-foreground text-base leading-8">
+                  {exportFeature.description}
+                </p>
+                <p className="mt-6 text-sm leading-7 font-medium">{exportFeature.evidence}</p>
+              </div>
+            </div>
+          </article>
+        </MotionReveal>
       </div>
     </section>
   )

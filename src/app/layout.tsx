@@ -1,8 +1,10 @@
 import { GoogleAnalytics } from '@next/third-parties/google'
 import type { Metadata } from 'next'
+import { Geist, Geist_Mono } from 'next/font/google'
 
 import './globals.css'
-import { Geist, Geist_Mono } from 'next/font/google'
+
+import { MotionProvider } from '@/components/MotionProvider'
 
 import { siteConfig } from './site'
 
@@ -33,6 +35,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
+  other: {
+    'og:image:width': String(siteConfig.ogImageWidth),
+    'og:image:height': String(siteConfig.ogImageHeight),
+  },
   openGraph: {
     type: 'website',
     locale: siteConfig.locale,
@@ -43,9 +49,9 @@ export const metadata: Metadata = {
     images: [
       {
         url: siteConfig.ogImage,
-        width: 1366,
-        height: 768,
-        alt: 'XB 微博 Chrome 插件效果预览',
+        width: siteConfig.ogImageWidth,
+        height: siteConfig.ogImageHeight,
+        alt: 'XB 微博浏览器扩展界面预览',
       },
     ],
   },
@@ -53,7 +59,12 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: siteConfig.title,
     description: siteConfig.description,
-    images: [siteConfig.ogImage],
+    images: [
+      {
+        url: siteConfig.ogImage,
+        alt: 'XB 微博浏览器扩展界面预览',
+      },
+    ],
   },
   robots: {
     index: true,
@@ -74,12 +85,34 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="zh-CN" className={`dark ${geistSans.variable} ${geistMono.variable}`}>
+    <html
+      lang="zh-CN"
+      className={`${geistSans.variable} ${geistMono.variable}`}
+      suppressHydrationWarning
+    >
       <head>
-        <link rel="alternate" type="text/markdown" href="/llms.txt" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              `(function(){try{var t=localStorage.getItem('xb-theme');` +
+              `var d=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;` +
+              `document.documentElement.classList.toggle('dark',d);` +
+              `document.documentElement.style.colorScheme=d?'dark':'light'}catch(e){}})()`,
+          }}
+        />
+        <link rel="alternate" type="text/markdown" href="/llms.txt" title="XB 项目摘要" />
+        <link rel="alternate" type="text/markdown" href="/llms-full.txt" title="XB 完整内容" />
       </head>
-      <GoogleAnalytics gaId="G-M7NWJPSRZK" />
-      <body className="flex min-h-full flex-col antialiased">{children}</body>
+      <body className="flex min-h-full flex-col antialiased">
+        <a
+          href="#main-content"
+          className="bg-primary text-primary-foreground fixed start-3 top-3 z-[100] -translate-y-[200%] rounded-lg px-4 py-2 text-sm font-medium focus:translate-y-0"
+        >
+          跳到主要内容
+        </a>
+        <MotionProvider>{children}</MotionProvider>
+        <GoogleAnalytics gaId="G-M7NWJPSRZK" />
+      </body>
     </html>
   )
 }

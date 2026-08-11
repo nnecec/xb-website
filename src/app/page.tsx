@@ -1,6 +1,5 @@
 import { faqItems, siteConfig } from '@/app/site'
 import ChangelogSection from '@/components/ChangelogSection'
-import ComparisonSection from '@/components/ComparisonSection'
 import CTASection from '@/components/CTASection'
 import FAQSection from '@/components/FAQSection'
 import FeaturesSection from '@/components/FeaturesSection'
@@ -9,8 +8,8 @@ import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import { ManifestoSection } from '@/components/ManifestoSection'
+import { OpenSourceSection } from '@/components/OpenSourceSection'
 import StatsBar from '@/components/StatsBar'
-import TestimonialsSection from '@/components/TestimonialsSection'
 
 export default function Home() {
   const softwareJsonLd = {
@@ -20,7 +19,7 @@ export default function Home() {
     alternateName: 'XB 微博插件',
     applicationCategory: 'BrowserApplication',
     operatingSystem: 'Any',
-    browserRequirements: 'Chrome、Edge、Arc 或 Firefox',
+    browserRequirements: 'Chrome、Edge 或 Firefox 浏览器',
     inLanguage: 'zh-CN',
     isAccessibleForFree: true,
     offers: {
@@ -32,7 +31,12 @@ export default function Home() {
     url: siteConfig.url,
     installUrl: siteConfig.installUrl,
     screenshot: [siteConfig.ogImage],
-    sameAs: [siteConfig.repoUrl, siteConfig.installUrl, siteConfig.firefoxInstallUrl],
+    sameAs: [
+      siteConfig.repoUrl,
+      siteConfig.installUrl,
+      siteConfig.edgeInstallUrl,
+      siteConfig.firefoxInstallUrl,
+    ],
     author: {
       '@type': 'Person',
       name: siteConfig.creator,
@@ -47,8 +51,8 @@ export default function Home() {
       '关注分组筛选',
       '浏览历史',
       '视频下载与全屏播放',
-      '开源免费',
-      '隐私优先',
+      '开源',
+      '本地处理',
     ],
   }
 
@@ -65,29 +69,64 @@ export default function Home() {
     })),
   }
 
+  const personJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: siteConfig.creator,
+    url: siteConfig.repoUrl,
+    sameAs: [siteConfig.repoUrl],
+    knowsAbout: ['Browser Extensions', 'Weibo', 'Web Development', 'Open Source'],
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': siteConfig.url,
+    },
+  }
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: siteConfig.name,
+        item: siteConfig.url,
+      },
+    ],
+  }
+
   return (
-    <main className="flex min-h-full flex-col">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
+    <>
       <Header />
-      <FirstScreen>
+      <main id="main-content" tabIndex={-1} className="flex min-h-full flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        />
+        <FirstScreen>
+          <Hero />
+        </FirstScreen>
+        <FeaturesSection />
+        <ManifestoSection />
+        <OpenSourceSection />
         <StatsBar />
-        <Hero />
-      </FirstScreen>
-      <ComparisonSection />
-      <FeaturesSection />
-      <ManifestoSection />
-      <TestimonialsSection />
-      <ChangelogSection />
-      <FAQSection />
-      <CTASection />
+        <ChangelogSection />
+        <FAQSection />
+        <CTASection />
+      </main>
       <Footer />
-    </main>
+    </>
   )
 }

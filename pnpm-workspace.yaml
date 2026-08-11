@@ -1,3 +1,5 @@
 allowBuilds:
   msw: true
   sharp: true
+minimumReleaseAgeExclude:
+  - shadcn@4.9.0

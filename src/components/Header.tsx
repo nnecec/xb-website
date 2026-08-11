@@ -1,159 +1,255 @@
 'use client'
 
+import { Download, Menu, X } from 'lucide-react'
 import Link from 'next/link'
-import React, { useState, useEffect } from 'react'
-import { siGooglechrome, siFirefoxbrowser, siGithub } from 'simple-icons'
+import { useEffect, useRef, useState } from 'react'
+import { siGithub } from 'simple-icons'
 
 import { siteConfig } from '@/app/site'
-import { AnimatedShinyText } from '@/components/ui/animated-shiny-text'
-import { HyperText } from '@/components/ui/hyper-text'
-
-const Icon: React.FC<{ path: string; className?: string }> = ({ path, className = 'h-4 w-4' }) => (
-  <svg className={className} role="img" viewBox="0 0 24 24" fill="currentColor">
-    <path d={path} />
-  </svg>
-)
+import { BrandIcon } from '@/components/BrandIcon'
+import { ThemeToggle } from '@/components/ThemeToggle'
+import { Button } from '@/components/ui/button'
 
 const navItems = [
-  { label: '功能特点', href: '#features' },
-  { label: '更新记录', href: '#changelog' },
-  { label: '用户评价', href: '#reviews' },
-  { label: '常见问题', href: '#faq' },
+  { label: '产品能力', href: '/#features' },
+  { label: '开源与隐私', href: '/#opensource' },
+  { label: '更新记录', href: '/#changelog' },
+  { label: '常见问题', href: '/#faq' },
 ]
 
-export const Header: React.FC = () => {
+export function Header() {
   const [open, setOpen] = useState(false)
-  const [hidden, setHidden] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-  const [lastScrollY, setLastScrollY] = useState(0)
+  const [installOpen, setInstallOpen] = useState(false)
+  const menuTriggerRef = useRef<HTMLButtonElement>(null)
+  const firstNavLinkRef = useRef<HTMLAnchorElement>(null)
+  const mobileNavRef = useRef<HTMLDivElement>(null)
+  const installTriggerRef = useRef<HTMLButtonElement>(null)
+  const firstInstallLinkRef = useRef<HTMLAnchorElement>(null)
+  const installContainerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY
-      setScrolled(currentScrollY > 50)
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setHidden(true)
-      } else {
-        setHidden(false)
+    if (!open && !installOpen) return
+
+    const focusTarget = window.requestAnimationFrame(() => {
+      if (open) firstNavLinkRef.current?.focus()
+      if (installOpen) firstInstallLinkRef.current?.focus()
+    })
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return
+
+      if (installOpen) {
+        setInstallOpen(false)
+        installTriggerRef.current?.focus()
+      } else if (open) {
+        setOpen(false)
+        menuTriggerRef.current?.focus()
       }
-      setLastScrollY(currentScrollY)
     }
 
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [lastScrollY])
+    window.addEventListener('keydown', handleKeyDown)
+    return () => {
+      window.cancelAnimationFrame(focusTarget)
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [open, installOpen])
+
+  useEffect(() => {
+    if (!installOpen) return
+
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!installContainerRef.current?.contains(event.target as Node)) {
+        setInstallOpen(false)
+      }
+    }
+
+    document.addEventListener('pointerdown', handlePointerDown)
+    return () => document.removeEventListener('pointerdown', handlePointerDown)
+  }, [installOpen])
 
   return (
-    <header
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ${hidden ? '-translate-y-full' : 'translate-y-0'} ${
-        scrolled
-          ? 'border-b border-[#00ff88]/[0.06] bg-[#0a0a0f]/90 backdrop-blur-xl'
-          : 'border-transparent bg-transparent'
-      }`}
-    >
-      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="group flex items-center gap-3">
-          <HyperText
-            as="span"
-            animateOnHover
-            className="text-2xl font-black text-[#00ff88] transition-transform duration-300 select-none group-hover:scale-110"
+    <header className="bg-background sticky top-0 z-50 w-full">
+      <nav className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-5 sm:px-8">
+        <Link
+          href="/"
+          className="group focus-visible:ring-ring/40 flex min-h-10 items-center gap-3 rounded-md focus-visible:ring-2"
+          aria-label="XB 首页"
+        >
+          <span
+            lang="en"
+            className="text-edge text-2xl leading-none font-bold lowercase transition-transform duration-200 group-hover:-translate-y-px"
           >
             xb
-          </HyperText>
-          <AnimatedShinyText
-            shimmerWidth={100}
-            className="hidden font-mono text-xs tracking-widest text-[#5a5a68] uppercase sm:block dark:via-[#9898a4]/60"
-          >
-            微博浏览器插件
-          </AnimatedShinyText>
+          </span>
+          <span className="bg-border hidden h-4 w-px sm:block" aria-hidden="true" />
+          <span className="text-muted-foreground hidden text-xs sm:block">
+            为微博重新设计阅读界面
+          </span>
         </Link>
+
         <div className="hidden items-center gap-1 md:flex">
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.label}
               href={item.href}
-              className="group relative px-4 py-3 text-sm text-[#9898a4] transition-colors duration-200 hover:text-[#e8e8ec]"
+              className="text-muted-foreground hover:bg-muted hover:text-foreground inline-flex min-h-10 items-center rounded-lg px-3 text-sm transition-colors duration-200"
             >
               {item.label}
-              <span className="absolute right-4 bottom-2 left-4 h-px origin-left scale-x-0 bg-[#00ff88] transition-transform duration-300 group-hover:scale-x-100" />
-            </a>
+            </Link>
           ))}
         </div>
-        <div className="flex items-center gap-3">
-          <a
-            href={siteConfig.installUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Chrome 商店"
-            className="hidden h-9 w-9 items-center justify-center rounded-lg border border-[#2a2a38] text-[#9898a4] transition-all duration-200 hover:border-[#3a3a4a] hover:text-[#e8e8ec] sm:inline-flex"
+
+        <div className="flex items-center gap-1.5">
+          <Button variant="ghost" size="icon" asChild className="hidden sm:inline-flex">
+            <a
+              href={siteConfig.repoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="在 GitHub 查看 XB 源码"
+            >
+              <svg
+                className="size-[18px]"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d={siGithub.path} />
+              </svg>
+            </a>
+          </Button>
+          <ThemeToggle />
+          <div
+            ref={installContainerRef}
+            className="relative"
+            onBlur={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+                setInstallOpen(false)
+              }
+            }}
           >
-            <Icon path={siGooglechrome.path} />
-          </a>
-          <a
-            href={siteConfig.firefoxInstallUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Firefox 商店"
-            className="hidden h-9 w-9 items-center justify-center rounded-lg border border-[#2a2a38] text-[#9898a4] transition-all duration-200 hover:border-[#3a3a4a] hover:text-[#e8e8ec] sm:inline-flex"
-          >
-            <Icon path={siFirefoxbrowser.path} />
-          </a>
-          <a
-            href={siteConfig.repoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            className="hidden h-9 w-9 items-center justify-center rounded-lg border border-[#2a2a38] text-[#9898a4] transition-all duration-200 hover:border-[#3a3a4a] hover:text-[#e8e8ec] sm:inline-flex"
-          >
-            <Icon path={siGithub.path} />
-          </a>
-          <button
-            aria-label="Menu"
-            onClick={() => setOpen((v) => !v)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-[#2a2a38] text-[#e8e8ec] transition-all duration-200 hover:border-[#00ff88] hover:text-[#00ff88] md:hidden"
+            <Button
+              ref={installTriggerRef}
+              type="button"
+              size="icon"
+              variant="outline"
+              aria-label="选择浏览器安装 XB"
+              title="选择浏览器安装 XB"
+              aria-expanded={installOpen}
+              aria-controls="install-picker"
+              onClick={() => {
+                setInstallOpen((value) => !value)
+                setOpen(false)
+              }}
+            >
+              <Download className="size-4" aria-hidden="true" />
+            </Button>
+            {installOpen ? (
+              <div
+                id="install-picker"
+                role="group"
+                aria-label="选择浏览器安装 XB"
+                className="bg-popover text-popover-foreground absolute top-[calc(100%+0.5rem)] right-0 z-50 w-56 rounded-xl border p-2 shadow-lg sm:w-64"
+              >
+                <a
+                  ref={firstInstallLinkRef}
+                  href={siteConfig.installUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setInstallOpen(false)}
+                  className="hover:bg-muted focus-visible:bg-muted flex min-h-11 items-center rounded-lg px-3 text-sm transition-colors"
+                >
+                  <span className="flex items-center gap-3">
+                    <BrandIcon name="chrome" className="size-5" />
+                    <span>
+                      <span className="block font-medium">Chrome</span>
+                      <span className="text-muted-foreground mt-0.5 block text-xs">
+                        Chrome 网上应用店
+                      </span>
+                    </span>
+                  </span>
+                </a>
+                <a
+                  href={siteConfig.edgeInstallUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setInstallOpen(false)}
+                  className="hover:bg-muted focus-visible:bg-muted flex min-h-11 items-center rounded-lg px-3 text-sm transition-colors"
+                >
+                  <span className="flex items-center gap-3">
+                    <BrandIcon name="edge" className="size-5" />
+                    <span>
+                      <span className="block font-medium">Edge</span>
+                      <span className="text-muted-foreground mt-0.5 block text-xs">
+                        Microsoft Edge 加载项
+                      </span>
+                    </span>
+                  </span>
+                </a>
+                <a
+                  href={siteConfig.firefoxInstallUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setInstallOpen(false)}
+                  className="hover:bg-muted focus-visible:bg-muted flex min-h-11 items-center rounded-lg px-3 text-sm transition-colors"
+                >
+                  <span className="flex items-center gap-3">
+                    <BrandIcon name="firefox" className="size-5" />
+                    <span>
+                      <span className="block font-medium">Firefox</span>
+                      <span className="text-muted-foreground mt-0.5 block text-xs">
+                        Firefox 附加组件
+                      </span>
+                    </span>
+                  </span>
+                </a>
+              </div>
+            ) : null}
+          </div>
+          <Button
+            ref={menuTriggerRef}
             type="button"
+            variant="ghost"
+            size="icon"
+            onClick={() => {
+              setOpen((value) => !value)
+              setInstallOpen(false)
+            }}
+            className="md:hidden"
+            aria-label={open ? '关闭导航菜单' : '打开导航菜单'}
+            aria-expanded={open}
+            aria-controls="mobile-navigation"
           >
-            <span className="sr-only">Menu</span>
-            {open ? (
-              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            ) : (
-              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            )}
-          </button>
+            {open ? <X className="size-5" /> : <Menu className="size-5" />}
+          </Button>
         </div>
       </nav>
-      <div
-        className={`overflow-hidden transition-all duration-300 ease-out md:hidden ${open ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'}`}
-      >
-        <div className="border-t border-[#00ff88]/10 bg-[#0a0a0f]/90 backdrop-blur-xl">
-          <div className="flex flex-col gap-1 px-4 py-4">
+
+      {open ? (
+        <div
+          ref={mobileNavRef}
+          id="mobile-navigation"
+          className="bg-background absolute inset-x-0 top-full border-b px-5 py-4 md:hidden"
+          onBlur={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+              setOpen(false)
+            }
+          }}
+        >
+          <div className="mx-auto flex max-w-[1200px] flex-col gap-1">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.label}
+                ref={item === navItems[0] ? firstNavLinkRef : undefined}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="block rounded-lg px-4 py-3 text-sm text-[#9898a4] transition-all duration-200 hover:bg-[#1a1a24] hover:text-[#e8e8ec]"
+                className="text-muted-foreground hover:bg-muted hover:text-foreground rounded-lg px-3 py-3 text-sm transition-colors"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </div>
         </div>
-      </div>
+      ) : null}
     </header>
   )
 }

@@ -1,19 +1,19 @@
-"use client"
+'use client'
 
-import React, { useRef, useEffect, useState } from "react"
+import React, { useRef, useEffect, useState } from 'react'
 
 interface AnimatedSectionProps {
   children: React.ReactNode
   className?: string
   delay?: number
-  direction?: "up" | "down" | "left" | "right" | "fade"
+  direction?: 'up' | 'down' | 'left' | 'right' | 'fade'
 }
 
 export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
   children,
-  className = "",
+  className = '',
   delay = 0,
-  direction = "up",
+  direction = 'up',
 }) => {
   const ref = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
@@ -29,7 +29,7 @@ export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
           observer.unobserve(element)
         }
       },
-      { threshold: 0.1, rootMargin: "0px" }
+      { threshold: 0.1, rootMargin: '0px' },
     )
 
     observer.observe(element)
@@ -40,14 +40,14 @@ export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
   }, [])
 
   const transforms: Record<string, string> = {
-    up: "translateY(40px)",
-    down: "translateY(-40px)",
-    left: "translateX(40px)",
-    right: "translateX(-40px)",
-    fade: "translateY(0)",
+    up: 'translateY(40px)',
+    down: 'translateY(-40px)',
+    left: 'translateX(40px)',
+    right: 'translateX(-40px)',
+    fade: 'translateY(0)',
   }
 
-  const transform = isVisible ? "translateY(0) translateX(0)" : transforms[direction]
+  const transform = isVisible ? 'translateY(0) translateX(0)' : transforms[direction]
 
   return (
     <div
@@ -56,7 +56,7 @@ export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
       style={{
         opacity: isVisible ? 1 : 0,
         transform,
-        transition: `all 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
+        transition: `opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
       }}
     >
       {children}
